@@ -28,12 +28,12 @@ no_of_page = 1
 
 while no_of_page < 21:
     # Product sections
-    print(no_of_page)
+    print(f"Page No: {no_of_page}")
     WebDriverWait(driver, 10).until(EC.presence_of_element_located(
         (By.CSS_SELECTOR, "div.sg-col-20-of-24.s-result-item.s-asin.sg-col-0-of-12.sg-col-16-of-20.sg-col.s-widget-spacing-small.sg-col-12-of-16")))
     time.sleep(10)
     product_divs = driver.find_elements(by=By.CSS_SELECTOR, value="div.sg-col-20-of-24.s-result-item.s-asin.sg-col-0-of-12.sg-col-16-of-20.sg-col.s-widget-spacing-small.sg-col-12-of-16")
-    print(len(product_divs))
+    
     links_array = []
     product_names_array = []
     price_array = []
@@ -72,7 +72,6 @@ while no_of_page < 21:
         # Reviews
         try:
             reviews = product_div.find_element(by=By.CSS_SELECTOR, value="a span.a-size-base.s-underline-text").text
-            print(reviews)
         except NoSuchElementException:
             reviews = ''
         no_of_reviews_array.append(reviews)
@@ -101,6 +100,7 @@ while no_of_page < 21:
         prod_description = ''
         asin = ''
         manufacturer = ''
+        
         # Product Description
         try:
             details_list = driver.find_element(by=By.ID, value="detailBullets_feature_div")
